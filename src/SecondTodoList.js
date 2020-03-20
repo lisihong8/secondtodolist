@@ -2,6 +2,7 @@ import React, {Component, Fragment} from 'react';
 import { Input, Button, List } from 'antd';
 
 import { connect } from 'react-redux';
+import { changeInputValueAction, clickSubmitAction, deleteItemAction } from './store/actionCreators';
 
 
 
@@ -48,23 +49,26 @@ const mapDispatchToProps = (dispatch)=> {
   return {
     inputChange(e) {
       console.log(e.target.value);
-      const action = {
-        type: 'change_input_value',
-        value: e.target.value
-      }
+      // const action = {
+      //   type: CHANGE_INPUT_VALUE,
+      //   value: e.target.value
+      // }
+      const action = changeInputValueAction(e.target.value)
       dispatch(action);
     },
     clickSubmit() {
-      const action = {
-        type:'click_submit'
-      }
+      // const action = {
+      //   type: CLICK_SUBMIT
+      // }
+      const action = clickSubmitAction();
       dispatch(action);
     },
     deleteItem(index) {
-      const action = {
-        type:'delete_item',
-        index
-      }
+      // const action = {
+      //   type: DELETE_ITEM,
+      //   index
+      // }
+      const action = deleteItemAction(index);
       dispatch(action);
     }
   }
