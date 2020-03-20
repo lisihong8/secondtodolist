@@ -12,15 +12,18 @@ import 'antd/dist/antd.css';
 class SecondTodoList extends Component {
   
   render() {
+
+    const { inputValue, list, inputChange, clickSubmit, deleteItem } = this.props;
+    
     return (
       <Fragment>
         <div style={{margin:'10px 0 10px 10px'}}>
           <Input placeholder="请输入内容" 
             style={{width:'300px',marginRight:'10px'}} 
-            value={this.props.inputValue}
-            onChange={this.props.inputChange}
+            value={inputValue}
+            onChange={inputChange}
           />
-          <Button type="primary" onClick={this.props.clickSubmit}>提交</Button>
+          <Button type="primary" onClick={clickSubmit}>提交</Button>
         </div>
         <List
           style={{width:'300px',marginLeft:'10px'}}
@@ -28,8 +31,8 @@ class SecondTodoList extends Component {
           header={<div>Header</div>}
           footer={<div>Footer</div>}
           bordered
-          dataSource={this.props.list}
-          renderItem={(item,index) => <List.Item onClick={()=>{this.props.deleteItem(index)}}>{item}</List.Item>}
+          dataSource={list}
+          renderItem={(item,index) => <List.Item onClick={()=>{deleteItem(index)}}>{item}</List.Item>}
         />
       </Fragment>
     )
