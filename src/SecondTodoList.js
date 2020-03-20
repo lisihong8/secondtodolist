@@ -1,4 +1,4 @@
-import React, {Component, Fragment} from 'react';
+import React, { Fragment } from 'react';
 import { Input, Button, List } from 'antd';
 
 import { connect } from 'react-redux';
@@ -9,35 +9,33 @@ import { changeInputValueAction, clickSubmitAction, deleteItemAction } from './s
 import 'antd/dist/antd.css';
 
 
-class SecondTodoList extends Component {
-  
-  render() {
+const SecondTodoList = (props)=> {
 
-    const { inputValue, list, inputChange, clickSubmit, deleteItem } = this.props;
-    
-    return (
-      <Fragment>
-        <div style={{margin:'10px 0 10px 10px'}}>
-          <Input placeholder="请输入内容" 
-            style={{width:'300px',marginRight:'10px'}} 
-            value={inputValue}
-            onChange={inputChange}
-          />
-          <Button type="primary" onClick={clickSubmit}>提交</Button>
-        </div>
-        <List
-          style={{width:'300px',marginLeft:'10px'}}
-          size="small"
-          header={<div>Header</div>}
-          footer={<div>Footer</div>}
-          bordered
-          dataSource={list}
-          renderItem={(item,index) => <List.Item onClick={()=>{deleteItem(index)}}>{item}</List.Item>}
+  const { inputValue, list, inputChange, clickSubmit, deleteItem } = props;
+
+  return (
+    <Fragment>
+      <div style={{margin:'10px 0 10px 10px'}}>
+        <Input placeholder="请输入内容" 
+          style={{width:'300px',marginRight:'10px'}} 
+          value={inputValue}
+          onChange={inputChange}
         />
-      </Fragment>
-    )
-  }
+        <Button type="primary" onClick={clickSubmit}>提交</Button>
+      </div>
+      <List
+        style={{width:'300px',marginLeft:'10px'}}
+        size="small"
+        header={<div>Header</div>}
+        footer={<div>Footer</div>}
+        bordered
+        dataSource={list}
+        renderItem={(item,index) => <List.Item onClick={()=>{deleteItem(index)}}>{item}</List.Item>}
+      />
+    </Fragment>
+  )
 }
+
 
 // 把store里的数据映射到 这个组件的props上,mapStateToProps是个函数,接收一个参数,这个参数就是store里的数据
 const mapStateToProps = (state)=> {
